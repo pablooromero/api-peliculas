@@ -3,11 +3,12 @@ import { Controller, Post, Param, Get, UseGuards } from '@nestjs/common';
 import { FavoritesService } from './favorites.service';
 import { Auth } from 'src/api/auth/decorators/auth.decorator';
 import { RoleEnum } from 'src/core';
-import { ApiResponse } from '@nestjs/swagger';
+import { ApiResponse, ApiTags } from '@nestjs/swagger';
 import { GetUser } from 'src/api/auth/decorators/get-user.decorator';
 import { User } from 'src/api/auth/entities/user.entity';
 import { Favorite } from './entity/favorites.entity';
 
+@ApiTags('Favorites')
 @Controller('favorites')
 export class FavoritesController {
   constructor(private readonly favoritesService: FavoritesService) {}
