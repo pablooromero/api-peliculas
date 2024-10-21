@@ -42,6 +42,32 @@ export class AuthService {
     }
   }
 
+  async registerAdmin(createUserDto: CreateUserDto) {
+    try {
+      const {password, ...userData} = createUserDto;
+
+      const user = this.userRepository.create({
+        ...userData,
+        password: bcrypt.hashSync(password, 10)
+      });
+
+      user.roles = ['admin'];
+
+      await this.userRepository.save(user);
+
+      delete user.password;
+      delete user.isActive;
+
+      return {
+        ...user,
+        token: this.getJwtToken({id: user.id})
+      }
+
+    } catch (error) {
+      this.handleError(error);
+    }
+  }
+
   async login(loginUserDto: LoginUserDto) {
     try {
       const {password, email} = loginUserDto;

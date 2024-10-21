@@ -18,6 +18,13 @@ export class AuthController {
     return this.authService.register(createUserDto);
   }
 
+  @Post('register-admin')
+  @ApiResponse({ status: 201, description: 'User registered successfully', type: UserResponseDto })
+  @ApiResponse({ status: 400, description: 'Bad Request' })
+  createAdmin(@Body() createUserDto: CreateUserDto) {
+    return this.authService.registerAdmin(createUserDto);
+  }
+
   @Post('login')
   @ApiResponse({ status: 201, description: 'User registered successfully', type: UserResponseDto })
   @ApiResponse({ status: 401, description: 'Invalid credentials' })
