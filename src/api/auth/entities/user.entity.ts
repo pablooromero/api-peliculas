@@ -1,6 +1,5 @@
-import { Favorite } from "src/api/data/favorites/entities/favorite.entity";
 import { BaseModel } from "src/core/lib/class/base-model.class";
-import { BeforeInsert, BeforeUpdate, Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { BeforeInsert, BeforeUpdate, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity({
     name: 'users'
@@ -34,9 +33,5 @@ export class User extends BaseModel{
     checkEmailUpdate() {
         this.checkEmail()
     }
-
-    @OneToMany(() => Favorite, favorite => favorite.user, { lazy: true })
-    favorites: Promise<Favorite[]>;
-
 
 }
