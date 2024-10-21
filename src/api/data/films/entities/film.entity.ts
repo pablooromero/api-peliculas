@@ -3,6 +3,7 @@ import { Column, CreateDateColumn, DeleteDateColumn, Entity, JoinTable, ManyToMa
 import { Category } from "../../categories/entities/category.entity";
 import { ApiProperty } from "@nestjs/swagger";
 import { Favorite } from "../../favorites/entity/favorites.entity";
+import { Comment } from "../../comments/entities/comment.entity";
 
 @Entity({
     name: 'films'
@@ -52,4 +53,7 @@ export class Film extends BaseModel {
 
     @OneToMany(() => Favorite, favorite => favorite.film)
     favorites: Favorite[];
+
+    @OneToMany(() => Comment, (comment) => comment.film, { lazy: true })
+    comments: Comment[];
 }

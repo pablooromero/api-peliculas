@@ -62,7 +62,7 @@ describe('FilmsService', () => {
   //Test Create Film
   it('should create a film when valid categories are provided', async () => {
     const mockCategories: Category[] = [{ id: 1, name: 'Action', films: [], createdAt: new Date() }, { id: 2, name: 'Drama', films: [], createdAt: new Date() }];
-    const mockFilm: Film = { id: 1, name: 'Test Film', description: 'Test Description', year: new Date(), director: 'Test Director', categories: mockCategories,  createdAt: new Date(), swapiId: null, favorites: []  };
+    const mockFilm: Film = { id: 1, name: 'Test Film', description: 'Test Description', year: new Date(), director: 'Test Director', categories: mockCategories,  createdAt: new Date(), swapiId: null, favorites: [], comments: [] };
     const createFilmDto: CreateFilmDto = { name: 'Test Film', description: 'Test Description', year: new Date(), director: 'Test Director', categories: [1, 2] };
 
     jest.spyOn(categoryRepository, 'find').mockResolvedValue(mockCategories);
@@ -84,7 +84,7 @@ describe('FilmsService', () => {
 
   //Test UpdateFilm
   it('should update a film when a valid ID is provided', async () => {
-    const mockFilm: Film = { id: 1, name: 'Title', description: 'Test Description', year: new Date(), director: 'Test Director', categories: [],  createdAt: new Date(), swapiId: null, favorites: []  };
+    const mockFilm: Film = { id: 1, name: 'Title', description: 'Test Description', year: new Date(), director: 'Test Director', categories: [],  createdAt: new Date(), swapiId: null, favorites: [], comments: [] };
     const updateFilmDto: UpdateFilmDto = { name: 'Updated Title', categories: [1], year: new Date(), description: 'Test Description', director: 'Test Director' };
 
     jest.spyOn(repository, 'findOne').mockResolvedValue(mockFilm);

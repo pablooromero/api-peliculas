@@ -37,8 +37,8 @@ describe('FilmsController', () => {
 
   it('should call findAll and return a list of films', async () => {
     const result: Film[] = [
-      { id: 1, name: 'Film 1', description: 'Desc 1', year: new Date(), director: 'Director 1', swapiId: 123, createdAt: new Date(), categories: [], favorites: []},
-      { id: 2, name: 'Film 2', description: 'Desc 2', year: new Date(), director: 'Director 2', swapiId: 456, createdAt: new Date(), categories: [], favorites: []},
+      { id: 1, name: 'Film 1', description: 'Desc 1', year: new Date(), director: 'Director 1', swapiId: 123, createdAt: new Date(), categories: [], favorites: [], comments: []},
+      { id: 2, name: 'Film 2', description: 'Desc 2', year: new Date(), director: 'Director 2', swapiId: 456, createdAt: new Date(), categories: [], favorites: [], comments: [] },
     ];
     jest.spyOn(service, 'findAll').mockResolvedValue(result);
 
@@ -49,8 +49,8 @@ describe('FilmsController', () => {
   it('should call list and return paginated films', async () => {
     const result: { data: Film[]; totalRecords: number; totalPages: number } = {
       data: [
-        { id: 1, name: 'Film 1', description: 'Desc 1', year: new Date(), director: 'Director 1', swapiId: 123, createdAt: new Date(), categories: [], favorites: []},
-        { id: 2, name: 'Film 2', description: 'Desc 2', year: new Date(), director: 'Director 2', swapiId: 456, createdAt: new Date(), categories: [], favorites: [] },
+        { id: 1, name: 'Film 1', description: 'Desc 1', year: new Date(), director: 'Director 1', swapiId: 123, createdAt: new Date(), categories: [], favorites: [], comments: []},
+        { id: 2, name: 'Film 2', description: 'Desc 2', year: new Date(), director: 'Director 2', swapiId: 456, createdAt: new Date(), categories: [], favorites: [], comments: []},
       ],
       totalRecords: 2,
       totalPages: 1,
@@ -62,7 +62,7 @@ describe('FilmsController', () => {
   });
 
   it('should call findOne and return the requested film', async () => {
-    const result: Film = { id: 1, name: 'Film 1', description: 'Desc 1', year: new Date(), director: 'Director 1', swapiId: 123, createdAt: new Date(), categories: [], favorites: [] };
+    const result: Film = { id: 1, name: 'Film 1', description: 'Desc 1', year: new Date(), director: 'Director 1', swapiId: 123, createdAt: new Date(), categories: [], favorites: [], comments: [] };
     jest.spyOn(service, 'findOne').mockResolvedValue(result);
 
     expect(await controller.findOne(1)).toBe(result);
@@ -70,7 +70,7 @@ describe('FilmsController', () => {
   });
 
   it('should create a new film and return it', async () => {
-    const result: Film = { id: 1, name: 'New Film', description: 'Desc new', year: new Date(), director: 'New Director', swapiId: 789, createdAt: new Date(), categories: [], favorites: []  };
+    const result: Film = { id: 1, name: 'New Film', description: 'Desc new', year: new Date(), director: 'New Director', swapiId: 789, createdAt: new Date(), categories: [], favorites: [], comments: [] };
     const createFilmDto: CreateFilmDto = { name: 'New Film', categories: [1], description: 'Desc new', year: new Date(), director: 'New Director' };
     jest.spyOn(service, 'createFilm').mockResolvedValue(result);
 
@@ -79,7 +79,7 @@ describe('FilmsController', () => {
   });
 
   it('should update a film and return the updated film', async () => {
-    const result: Film = { id: 1, name: 'Updated Film', description: 'Desc updated', year: new Date(), director: 'Updated Director', swapiId: 999, createdAt: new Date(), categories: [], favorites: []};
+    const result: Film = { id: 1, name: 'Updated Film', description: 'Desc updated', year: new Date(), director: 'Updated Director', swapiId: 999, createdAt: new Date(), categories: [], favorites: [], comments: [] };
     const updateFilmDto: UpdateFilmDto = { name: 'Updated Film', categories: [1], year: new Date(), description: 'Desc updated', director: 'Updated Director' };
     jest.spyOn(service, 'updateFilm').mockResolvedValue(result);
 
@@ -88,7 +88,7 @@ describe('FilmsController', () => {
   });
 
   it('should delete a film and return the result', async () => {
-    const result: Film = { id: 1, name: 'Deleted Film', description: 'Desc deleted', year: new Date(), director: 'Deleted Director', swapiId: 123, createdAt: new Date(), categories: [], favorites: [] };
+    const result: Film = { id: 1, name: 'Deleted Film', description: 'Desc deleted', year: new Date(), director: 'Deleted Director', swapiId: 123, createdAt: new Date(), categories: [], favorites: [], comments: [] };
     jest.spyOn(service, 'remove').mockResolvedValue(result);
 
     expect(await controller.delete(1)).toBe(result);
