@@ -1,7 +1,8 @@
 import { BaseModel } from "src/core/lib/class/base-model.class";
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, DeleteDateColumn, Entity, JoinTable, ManyToMany, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { Category } from "../../categories/entities/category.entity";
 import { ApiProperty } from "@nestjs/swagger";
+import { Favorite } from "../../favorites/entity/favorites.entity";
 
 @Entity({
     name: 'films'
@@ -48,4 +49,7 @@ export class Film extends BaseModel {
     @JoinTable()
     @ManyToMany(() => Category, (category) => category.films)
     categories: Category[];
+
+    @OneToMany(() => Favorite, favorite => favorite.film)
+    favorites: Favorite[];
 }
