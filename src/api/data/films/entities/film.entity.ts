@@ -50,6 +50,6 @@ export class Film extends BaseModel {
     @ManyToMany(() => Category, (category) => category.films)
     categories: Category[];
 
-    @OneToMany(() => Favorite, favorite => favorite.film)
-    favorites: Favorite[];
+    @OneToMany(() => Favorite, favorite => favorite.film, { lazy: true })
+    favorites: Promise<Favorite[]>;
 }

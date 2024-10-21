@@ -10,10 +10,10 @@ export class Favorite {
   id: number;
 
   @ApiProperty({example: 1})
-  @ManyToOne(() => User, user => user.favorites)
+  @ManyToOne(() => User, user => user.favorites, { eager: false })
   user: User;
 
   @ApiProperty({example: 1})
-  @ManyToOne(() => Film, film => film.favorites)
+  @ManyToOne(() => Film, film => film.favorites, { eager: false })
   film: Film;
 }

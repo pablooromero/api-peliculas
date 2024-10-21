@@ -35,8 +35,8 @@ export class User extends BaseModel{
         this.checkEmail()
     }
 
-    @OneToMany(() => Favorite, favorite => favorite.user)
-    favorites: Favorite[];
+    @OneToMany(() => Favorite, favorite => favorite.user, { lazy: true })
+    favorites: Promise<Favorite[]>;
 
 
 }
